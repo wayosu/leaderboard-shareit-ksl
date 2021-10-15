@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_SESSION['loggedin'])) {
+    header('Location: a_team.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +57,7 @@
                 <h2 id="usage"><i class="nes-icon trophy"></i> Total Points</h2>
                 <div class="col">
                     <div class="nes-table-responsive">
-                        <table class="nes-table is-bordered" width="99%">
+                        <table class="nes-table is-bordered" id="myTable" width="99%">
                             <thead>
                                 <tr align="center">
                                     <th width="5%">#</th>
@@ -59,7 +66,7 @@
                                 </tr>
                             </thead>
                             <tbody id="data">
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -101,16 +108,16 @@
     <script>
         (function show_data() {
             $.ajax({
-               url: "app/function/views_index.php",
-               type: "GET",
-               dataType: "html",
-               success: function(data) {
-                //    alert(data);
+                url: "app/function/views_index.php",
+                type: "GET",
+                dataType: "html",
+                success: function(data) {
+                    //    alert(data);
                     $('#data').html(data);
-               },
-               complete: function() {
-                   setTimeout(show_data, 3000);
-               } 
+                },
+                complete: function() {
+                    setTimeout(show_data, 3000);
+                }
             });
         })();
     </script>

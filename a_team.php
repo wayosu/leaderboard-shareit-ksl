@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['loggedin'])) {
+    header('Location: login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,37 +64,33 @@
                 </div>
                 <div class="col-md-5">
                     <div class="float-end">
-                        <span>Wahyu Usman</span>
-                        <a href="logout.php" class="nes-btn is-dark" onclick="return confirm('Anda yakin keluar dari halaman ini?')">Logout</a>
+                        <span><?= $_SESSION['nama']; ?></span>
+                        <a href="app/post/logout.php" class="nes-btn is-dark" onclick="return confirm('Anda yakin keluar dari halaman ini?')">Logout</a>
                     </div>
                 </div>
             </div>
 
-            <div class="row justify-content-center mt-3">
-                <h2 id="usage"><i class="nes-icon trophy"></i> Total Point</h2>
-                <div class="col">
-                    <div class="nes-table-responsive">
-                        <table class="nes-table is-bordered" width="99%">
-                            <thead>
-                                <tr align="center">
-                                    <th width="5%">#</th>
-                                    <th>Nama</th>
-                                    <th>Points</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td>Wahyu Setiawan Usman</td>
-                                    <td align="center">
-                                        100
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <section class="mt-3">
+                <div class="row justify-content-center">
+                    <h2 id="usage"><i class="nes-icon trophy"></i> Total Points</h2>
+                    <div class="col">
+                        <div class="nes-table-responsive">
+                            <table class="nes-table is-bordered" id="myTable" width="99%">
+                                <thead>
+                                    <tr align="center">
+                                        <th width="5%">#</th>
+                                        <th>Nama</th>
+                                        <th>Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="data">
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </section>
 
@@ -98,6 +102,25 @@
             </p>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        (function show_data() {
+            $.ajax({
+                url: "app/function/views_index.php",
+                type: "GET",
+                dataType: "html",
+                success: function(data) {
+                    //    alert(data);
+                    $('#data').html(data);
+                },
+                complete: function() {
+                    setTimeout(show_data, 3000);
+                }
+            });
+        })();
+    </script>
+
 </body>
 
 </html>

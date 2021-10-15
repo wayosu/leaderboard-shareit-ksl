@@ -1,3 +1,7 @@
+<?php
+    include 'app/post/login.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,16 +53,18 @@
                 <div class="col-md-6">
                     <div class="nes-container with-title">
                         <h3 class="title">Login</h3>
-                        <div class="nes-field mb-3">
-                            <label for="name_field">Username</label>
-                            <input type="text" name="username" id="name_field" class="nes-input">
-                        </div>
-                        <div class="nes-field mb-3">
-                            <label for="name_field">Password</label>
-                            <input type="text" name="password" id="name_field" class="nes-input">
-                        </div>
-                        <a href="./" class="nes-btn">Kembali</a>
-                        <button type="submit" name="login" class="nes-btn is-success">Login</button>
+                        <form action="" method="POST">
+                            <div class="nes-field mb-3">
+                                <label for="name_field">Username</label>
+                                <input type="text" name="username" id="name_field" class="nes-input">
+                            </div>
+                            <div class="nes-field mb-3">
+                                <label for="name_field">Password</label>
+                                <input type="text" name="password" id="name_field" class="nes-input">
+                            </div>
+                            <a href="./" class="nes-btn">Home Page</a>
+                            <button type="submit" name="login" class="nes-btn is-success">Login</button>
+                        </form>
                     </div>
                 </div>
             </div>
