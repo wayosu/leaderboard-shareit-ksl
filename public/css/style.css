@@ -1,0 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.my-navbar {
+    border-bottom: 4px solid #e1e1e1;
+}
