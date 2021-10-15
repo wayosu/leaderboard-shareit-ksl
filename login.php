@@ -60,7 +60,7 @@
                             </div>
                             <div class="nes-field mb-3">
                                 <label for="name_field">Password</label>
-                                <input type="text" name="password" id="name_field" class="nes-input">
+                                <input type="password" name="password" id="name_field" class="nes-input">
                             </div>
                             <a href="./" class="nes-btn">Home Page</a>
                             <button type="submit" name="login" class="nes-btn is-success">Login</button>

@@ -1,8 +1,21 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.php');
-	exit;
+    header('Location: login.php');
+    exit;
+}
+include 'app/conn.php';
+
+if (isset($_POST['id_peserta']) && isset($_POST['hcb'])) {
+    $id_peserta = $_POST['id_peserta'];
+    $point1 = $_POST['point1'];
+    $point2 = $_POST['point2'];
+    $point3 = $_POST['point3'];
+    $point4 = $_POST['point4'];
+
+    $sql = $mysqli->query("UPDATE htmlcssbootstrap SET point1='$point1',point2='$point2',point3='$point3',point4='$point4' WHERE id_peserta='$id_peserta'");
+
+    header('Location: a_htmlcssbootstrap.php');
 }
 ?>
 <!DOCTYPE html>
@@ -55,6 +68,11 @@ if (!isset($_SESSION['loggedin'])) {
             <a href="a_team.php" class="nes-btn">Back</a>
             <div class="row justify-content-center mt-3">
                 <h2 id="usage"><i class="nes-icon trophy"></i> HTML, CSS & Bootstrap Assesment</h2>
+                <h4 class="nes-text is-error">*Read first</h4>
+                <p>1. <span class="nes-text">Point kuning</span> = Wireframe (layout)</p>
+                <p>2. <span class="nes-text">Point hijau</span> = Responsive</p>
+                <p>3. <span class="nes-text">Point merah</span> = Content Precision</p>
+                <p>4. <span class="nes-text">Point hitam</span> = Layout To Do List</p>
                 <div class="col">
                     <div class="nes-table-responsive">
                         <table class="nes-table is-bordered" width="99%">
@@ -66,13 +84,36 @@ if (!isset($_SESSION['loggedin'])) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td>Wahyu Setiawan Usman</td>
-                                    <td align="center">
-                                        <input type="number" name="" class="nes-input w-25">
-                                    </td>
-                                </tr>
+                                <?php
+                                $result = $mysqli->query("SELECT *, hcb.point1 + hcb.point2 + hcb.point3 + hcb.point4 AS total FROM peserta p JOIN htmlcssbootstrap hcb ON p.id = hcb.id_peserta ORDER BY total DESC");
+                                $no = 1;
+                                while ($row = $result->fetch_object()) {
+                                    echo "
+                                            <tr>
+                                                <td align='center'>$no</td>
+                                                <td>$row->nama</td>
+                                                <td>
+                                        ";
+                                ?>
+                                    <form action="" method="POST">
+                                        <div class="text-center">
+                                            <input type="hidden" name="id_peserta" value="<?= $row->id_peserta; ?>">
+                                            <input type="hidden" name="hcb" value="htmlcssbootstrap">
+                                            <input type="number" name="point1" class="nes-input is-warning" style="width: 20%;" value="<?= $row->point1; ?>">
+                                            <input type="number" name="point2" class="nes-input is-success" style="width: 20%;" value="<?= $row->point2; ?>">
+                                            <input type="number" name="point3" class="nes-input is-error" style="width: 20%;" value="<?= $row->point3; ?>">
+                                            <input type="number" name="point4" class="nes-input" style="width: 20%;" value="<?= $row->point4; ?>">
+                                            <input type="submit" style="display: none;">
+                                        </div>
+                                    </form>
+                                <?php
+                                    echo "
+                                                </td>
+                                            </tr>
+                                        ";
+                                    $no++;
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
