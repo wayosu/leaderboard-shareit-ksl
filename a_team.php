@@ -45,11 +45,23 @@
 
     <section class="mt-3">
         <div class="container">
-            <a href="logout.php" class="nes-btn is-dark">Logout</a>
-            <a href="a_htmlcssbootstrap.php" class="nes-btn">HTML, CSS & Bootstrap</a>
-            <a href="a_php.php" class="nes-btn">PHP</a>
-            <a href="a_mysql.php" class="nes-btn">MySQL</a>
-            <a href="a_crud.php" class="nes-btn">CRUD</a>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="float-start">
+                        <a href="a_htmlcssbootstrap.php" class="nes-btn">HTML, CSS & Bootstrap</a>
+                        <a href="a_php.php" class="nes-btn">PHP</a>
+                        <a href="a_mysql.php" class="nes-btn">MySQL</a>
+                        <a href="a_crud.php" class="nes-btn">CRUD</a>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="float-end">
+                        <span>Wahyu Usman</span>
+                        <a href="logout.php" class="nes-btn is-dark" onclick="return confirm('Anda yakin keluar dari halaman ini?')">Logout</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="row justify-content-center mt-3">
                 <h2 id="usage"><i class="nes-icon trophy"></i> Total Point</h2>
                 <div class="col">

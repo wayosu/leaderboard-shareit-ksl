@@ -25,12 +25,13 @@
 </head>
 
 <body>
+
     <nav class="my-navbar">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="mt-3">
-                        <a href="https://nostalgic-css.github.io/NES.css/">
+                        <a href="#">
                             <h1>Leaderboard</h1>
                         </a>
                         <p>SHARE IT PROGRAMMING.</p>
@@ -57,47 +58,8 @@
                                     <th>Points</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td>Wahyu Setiawan Usman</td>
-                                    <td align="center">1100</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td>Wahyu Setiawan Usman</td>
-                                    <td align="center">1100</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td>Wahyu Setiawan Usman</td>
-                                    <td align="center">1100</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td>Wahyu Setiawan Usman</td>
-                                    <td align="center">1100</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td>Wahyu Setiawan Usman</td>
-                                    <td align="center">1100</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td>Wahyu Setiawan Usman</td>
-                                    <td align="center">1100</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td>Wahyu Setiawan Usman</td>
-                                    <td align="center">1100</td>
-                                </tr>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td>Wahyu Setiawan Usman</td>
-                                    <td align="center">1100</td>
-                                </tr>
+                            <tbody id="data">
+                                
                             </tbody>
                         </table>
                     </div>
@@ -106,7 +68,7 @@
         </div>
     </section>
 
-    <section class="contributors my-5">
+    <section class="contributors my-4">
         <div class="container">
             <div class="row justify-content-center">
                 <h3 class="topic-title mb-4"><i class="nes-icon heart"></i> Assessment Team</h3>
@@ -122,12 +84,6 @@
                         <p>Wahyu Usman</p>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="contributor text-center">
-                        <img class="nes-avatar is-large is-rounded" src="public/img/singgi.png">
-                        <p>Singgi Mokodompit</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -140,6 +96,25 @@
             </p>
         </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        (function show_data() {
+            $.ajax({
+               url: "app/function/views_index.php",
+               type: "GET",
+               dataType: "html",
+               success: function(data) {
+                //    alert(data);
+                    $('#data').html(data);
+               },
+               complete: function() {
+                   setTimeout(show_data, 3000);
+               } 
+            });
+        })();
+    </script>
+
 </body>
 
 </html>
